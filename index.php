@@ -3,6 +3,7 @@
 
 define('APATH', dirname(__FILE__));
 define('CONFIG', '/Config');
+define('CONTROLLER', '/Controller');
 define('CORE', '/Core');
 define('LIBS','/Libs');
 define('CSS','/Front/css/');

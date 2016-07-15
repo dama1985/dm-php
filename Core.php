@@ -3,7 +3,7 @@ class core
 {
     public static function init()
     {
-        self::load_files(CORE);//加载文件
+        self::load_core();//加载文件
         //self::load_files(CONFIG);
         if(isset($_REQUEST['c']))
         {
@@ -23,9 +23,9 @@ class core
         }
         Core\mvc::C($c,$m);
     }
-    public static function load_files($dir)
+    public static function load_core()
     {
-        $dir = APATH.$dir;
+        $dir = APATH.CORE;
         $handle = opendir( $dir );
         if ($handle)
         {
@@ -38,6 +38,19 @@ class core
                 }
             }
             closedir($handle);
+        }
+    }
+    public static function load_base_controller()//Base文件夹里的类可以按顺序继承
+    {
+        $files_arr = require_once CONFIG.'/controller.config.php';
+        $dir = APATH.CONTROLLER.'/basic/';
+        foreach($files_arr as $file)
+        {
+            $file_name = $file.'Controller.php';
+            if(file_exists($dir.$file))
+                require_once $dir.$file;
+            else
+               echo $dir.$file.'文件不存在';
         }
     }
 }

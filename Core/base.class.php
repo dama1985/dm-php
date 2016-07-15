@@ -16,7 +16,10 @@ class base
         header("Content-type: text/html; charset=utf-8");
         \Core\mvc::V($this->Base_V_D,$this->Base_V_F,$V);
     }
-
+    protected function __Model(&$M)
+    {
+        return  \Core\mvc::M($M);
+    }
     /**
      * @return string
      */
