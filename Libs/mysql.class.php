@@ -4,7 +4,7 @@ use PDO;
 class mysql{
     protected $pdo;
     protected $res = '';
-    protected $config;
+    protected $Config;
 
     /*构造函数*/
     function __construct($config){
@@ -13,7 +13,8 @@ class mysql{
     }
 
     /*数据库连接*/
-    public function connect(){
+    public function connect()
+    {
         $this->pdo = new PDO($this->Config['dsn'], $this->Config['name'], $this->Config['password']);
         $this->pdo->query('set names utf8;');
         //把结果序列化成stdClass

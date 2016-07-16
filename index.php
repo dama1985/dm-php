@@ -1,7 +1,7 @@
 <?php
 //入口文件
 
-define('APATH', dirname(__FILE__));
+define('APATH', dirname(__FILE__));//文件绝对路径
 define('CONFIG', '/Config');
 define('CONTROLLER', '/Controller');
 define('CORE', '/Core');

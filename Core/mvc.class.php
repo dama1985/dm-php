@@ -6,7 +6,7 @@ class mvc
     {
         if(file_exists(APATH.'/Controller/'.$name.'Controller.class.php'))
         {
-            require_once('/Controller/'.$name.'Controller.class.php');
+            require_once(APATH.'/Controller/'.$name.'Controller.class.php');
             $class_name = $name.'Controller';
             if(!class_exists($class_name))
             {
@@ -59,7 +59,7 @@ class mvc
     {
         if(file_exists(APATH.'/Model/'.$name.'Model.class.php'))
         {
-            require_once('/Model/'.$name.'Model.class.php');
+            require_once(APATH.'/Model/'.$name.'Model.class.php');
             $class_name = $name.'Model';
             if(!class_exists($class_name))
             {
@@ -80,7 +80,7 @@ class mvc
     {
         if(file_exists(APATH.'/View/'.$D.'/'.$F.'View.php'))
         {
-            require_once('/View/'.$D.'/'.$F.'View.php');
+            require_once(APATH.'/View/'.$D.'/'.$F.'View.php');
         }
         else
         {

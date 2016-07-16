@@ -11,8 +11,8 @@ class db
         //static $obj;
         if(!isset($Tag)||$Tag!=$tag)
         {
-            require_once LIBS.'/mysql.class.php';
-            $config = require_once CONFIG.'/mysql.config.php';
+            require_once APATH.LIBS.'/mysql.class.php';
+            $config = require_once APATH.CONFIG.'/mysql.config.php';
             $Tag = $tag;
             self::$mysqlobj = new \Libs\mysql($config[$Tag]);
             //return $obj;
@@ -30,7 +30,7 @@ class db
     {
         
     }
-    public function SeTotalPages(string $sql):string
+    public function SeTotalPages(string $sql)
     {
         global $TotalPages;
         $TotalPages = ceil(self::$mysqlobj->getRowNum($sql)/$this->PerPageRecordsNum);//获取记录总页数

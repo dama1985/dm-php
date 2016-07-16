@@ -25,7 +25,7 @@ class base
      */
     public function __GetPages()
     {
-        require_once LIBS.'/page.class.php';
+        require_once APATH.LIBS.'/page.class.php';
         global $TotalPages;
         if(isset($this->get['page']))$page = $this->get['page'];
         else $page = 1;
