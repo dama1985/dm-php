@@ -4,9 +4,10 @@ class mvc
 {
     public static function C($name,$method)//控制器
     {
-        if(file_exists(APATH.'/Controller/'.$name.'Controller.class.php'))
+        $type= mvc::GetTypePath();
+        if(file_exists(APATH.'/Controller/'.$type.$name.'Controller.class.php'))
         {
-            require_once(APATH.'/Controller/'.$name.'Controller.class.php');
+            require_once(APATH.'/Controller/'.$type.$name.'Controller.class.php');
             $class_name = $name.'Controller';
             if(!class_exists($class_name))
             {
@@ -78,28 +79,48 @@ class mvc
 
     public static function V($D,$F,&$V=array())//加载视图
     {
-        if(file_exists(APATH.'/View/'.$D.'/'.$F.'View.php'))
+        $type= mvc::GetTypePath();
+        if(file_exists(APATH.'/View/'.$type.$D.'/'.$F.'View.php'))
         {
-            require_once(APATH.'/View/'.$D.'/'.$F.'View.php');
+            require_once(APATH.'/View/'.$type.$D.'/'.$F.'View.php');
         }
         else
         {
-            echo '不存在视图文件/View/'.$D.'/'.$F.'View.php';
+            echo '不存在视图文件/View/'.$type.$D.'/'.$F.'View.php';
             exit;
         }
-        //eval('$obj = new '.$name.'View();');
-        //return $obj;
     }
     
     public static function Filter($v)
     {
-        if(is_array($v)) 
+        if(is_array($v))
         {
             return array_map(array("Core\mvc","Filter"),$v);
         }
         else
         {
             return htmlspecialchars(addslashes($v));
+        }
+    }
+    
+    public static function GetTypePath()
+    {
+        if(isset($_REQUEST['f']))
+        {
+
+                if(file_exists(APATH.'/Controller/'.$_REQUEST['f']))
+                {
+                    return $_REQUEST['f'].'/';
+                }
+                else
+                {
+                    echo 'Controller下不存在该文件夹';
+                    die();
+                }
+        }
+        else
+        {
+            return '';
         }
     }
 }
